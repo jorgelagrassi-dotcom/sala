@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Consulta de Professores — Horários</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="card">
+      <div>
+        <h1>Consulta de Professores — Horários (Manhã / Tarde / Noite)</h1>
+        <div class="small">Selecione um professor para ver onde ele está agora e a lista completa de aulas.</div>
+      </div>
+      <div style="text-align:right">
+        <div class="small">Horário local:</div>
+        <div id="clock" style="font-weight:700;font-size:16px">--:--</div>
+        <div id="period-box" class="small" style="margin-top:6px"></div>
+      </div>
+    </header>
+
+    <section class="card" style="min-height:400px">
+      <div class="controls">
+        <label for="professor">Professor</label>
+        <select id="professor"><option value="">-- carregando --</option></select>
+
+        <div style="display:flex;gap:8px;margin-top:6px;">
+          <button class="primary" id="btn-mostrar">Mostrar horários</button>
+          <button id="btn-limpar">Limpar</button>
+        </div>
+
+        <hr style="margin:12px 0;border:none;border-top:1px solid #eef3fb"/>
+
+        <h3 style="margin:6px 0 8px 0">Pesquisa Avançada</h3>
+        <label for="data">Data</label>
+        <input type="date" id="data">
+        
+        <label for="dia">Dia da Semana</label>
+        <select id="dia">
+          <option value="">(qualquer)</option>
+          <option value="Segunda">Segunda</option>
+          <option value="Terça">Terça</option>
+          <option value="Quarta">Quarta</option>
+          <option value="Quinta">Quinta</option>
+          <option value="Sexta">Sexta</option>
+          <option value="Sábado">Sábado</option>
+          <option value="Domingo">Domingo</option>
+        </select>
+
+        <label for="periodo">Período</label>
+        <select id="periodo">
+          <option value="">(qualquer)</option>
+          <option value="manha">Manhã</option>
+          <option value="tarde">Tarde</option>
+          <option value="noite">Noite</option>
+        </select>
+
+        <label for="qprof">Professor (opcional)</label>
+        <select id="qprof"><option value="">(qualquer)</option></select>
+
+        <button id="btn-avancada">Aplicar filtro</button>
+
+        <div id="resultado"></div>
+      </div>
+    </section>
+
+    <aside class="card">
+      <div style="margin-bottom:12px">
+        <label>Resumo rápido</label>
+        <div class="small">Escolha um professor para ver onde ele está agora e todas as aulas.</div>
+      </div>
+
+      <div id="agora" class="empty">Nenhum professor selecionado</div>
+
+      <div style="margin-top:14px">
+        <label>Instruções</label>
+        <div class="small">
+          - Use o campo <b>Pesquisa Avançada</b> para filtrar por data/periodo.<br>
+          - A busca "onde está agora" usa o dia e horário do seu dispositivo.<br>
+          - Se um horário começar exatamente no minuto atual, será mostrado como "AGORA".
+        </div>
+      </div>
+    </aside>
+
+    <footer class="small">Arquivo gerado automaticamente a partir dos PDFs de manhã/tarde/noite (parser no navegador).</footer>
+  </div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

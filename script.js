@@ -148,7 +148,7 @@ function processTimeLine(line, currentDay, rooms, periodo, entries){
 }
 
 /* Parse all three periods */
-const manhaEntries = parsePeriod(rawManha, 'manha');
+const manhaEntries = parsePeriod(rawManha, 'manhã');
 const tardeEntries = parsePeriod(rawTarde, 'tarde');
 const noiteEntries = parsePeriod(rawNoite, 'noite');
 
@@ -407,4 +407,5 @@ document.addEventListener('keydown',(e)=>{
 
 /* debug: write counts to console */
 console.log('Total registros extraídos:', allEntries.length);
+
 console.log('Professores detectados:', Object.keys(profMap).length);

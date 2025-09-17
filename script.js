@@ -198,6 +198,19 @@ function populateProfessorSelects(){
 }
 populateProfessorSelects();
 
+function populateRoomSelects(){
+  const rooms = [...new Set(allEntries.map(e=>e.sala).filter(Boolean))].sort();
+  const sel = document.getElementById('sala');
+  sel.innerHTML = '<option value="">(qualquer)</option>';
+  rooms.forEach(r=>{
+    const opt = document.createElement('option');
+    opt.value = r;
+    opt.textContent = r;
+    sel.appendChild(opt);
+  });
+}
+populateRoomSelects();
+
 /* clock & period detection */
 function format2(n){return n.toString().padStart(2,'0');}
 function updateClock(){
@@ -322,6 +335,7 @@ document.getElementById('btn-limpar').addEventListener('click',()=>{
   document.getElementById('periodo').value = '';
   document.getElementById('qprof').value = '';
   document.getElementById('dia').value = ''; // add this line
+  document.getElementById('sala').value = '';
   document.getElementById('resultado').innerHTML = '';
   document.getElementById('agora').innerHTML = 'Nenhum professor selecionado';
 });
@@ -332,6 +346,7 @@ document.getElementById('btn-avancada').addEventListener('click', ()=>{
   const periodo = document.getElementById('periodo').value;
   const profOpt = document.getElementById('qprof').value;
   const diaOpt = document.getElementById('dia').value;
+  const salaOpt = document.getElementById('sala').value;
   const results = [];
 
   let filterDay = null;
@@ -344,8 +359,9 @@ document.getElementById('btn-avancada').addEventListener('click', ()=>{
   profsToSearch.forEach(p=>{
     (profMap[p] || []).forEach(a=>{
       if(filterDay && a.dia !== filterDay) return;
-      if(diaOpt && a.dia !== diaOpt) return; // Add this line
+      if(diaOpt && a.dia !== diaOpt) return;
       if(periodo && a.periodo !== periodo) return;
+      if(salaOpt && a.sala !== salaOpt) return;
       results.push({prof:p, ...a});
     });
   });
